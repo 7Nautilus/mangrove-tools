@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<!-- Meta tags essentiels (ordre standard) -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MANGROVE</title>
+	<meta name="description" content="Outil professionnel de dithering avec 3 algorithmes, contrôles de luminosité/contraste et préréglages optimisés">
+	<meta name="keywords" content="dithering, floyd-steinberg, random dithering, pixel art, traitement image, luminosité, contraste">
+	
+	<!-- Préchargement des ressources critiques (optimisation performance) -->
+	<link rel="preload" href="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js" as="script">
+	<link rel="preload" href="src/css/design-system.css" as="style">
+	<link rel="preload" href="src/css/style.css" as="style">
+	<link rel="preload" href="src/js/common.js" as="script">
+	<link rel="preload" href="src/js/sketch.js" as="script">
+	
+	<!-- Feuilles de style (ordre d'importance) -->
+	<link rel="stylesheet" href="src/css/design-system.css">
+	<link rel="stylesheet" href="src/css/style.css">
+	
+	<!-- Scripts (ordre de dépendances) -->
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js" defer></script>
+	<script src="src/js/common.js" defer></script>
+	<script src="src/js/sketch.js" defer></script>
+	
+	<!-- Script d'initialisation optimisé -->
+	<script>
+		// Masquer l'indicateur de chargement une fois l'application prête
+		window.addEventListener('load', () => {
+			setTimeout(() => {
+				const loadingIndicator = document.getElementById('loading-indicator');
+				if (loadingIndicator) {
+					loadingIndicator.style.display = 'none';
+				}
+			}, 500);
+		});
+		
+		// Logging pour débogage
+		console.log('Dithering Tool Pro v2.1 - Initialisé avec succès');
+	</script>
+</head>
+<body>
+	<!-- Indicateur de chargement global -->
+	<div id="loading-indicator" class="loading-overlay">
+		<div class="loading-content">
+			<div class="loading-spinner"></div>
+			<p>Chargement de l'application...</p>
+		</div>
+	</div>
+
+	<header class="top-banner">
+		<h1>MANGROVE</h1>
+		<p>Dithering Tool</p>
+		<div class="nav-links">
+			<a href="index.html" class="nav-link active">Dithering Tool</a>
+			<a href="halftone.html" class="nav-link">Halftone Tool</a>
+		</div>
+		<div class="theme-toggle">
+			<span class="theme-label">Light</span>
+			<div class="apple-switch" id="themeSwitch">
+				<div class="switch-handle"></div>
+			</div>
+			<span class="theme-label">Dark</span>
+		</div>
+	</header>
+	
+	<!-- ===== PANNEAU DE CONTRÔLES ===== -->
+	<div class="controls">
+		<!-- 1. INPUT - Sélection d'image (priorité haute) -->
+		<div class="control-item">
+			<label for="imageUpload">Image</label>
+			<div class="file-upload-wrapper">
+				<input type="file" id="imageUpload" accept="image/*" class="file-input-hidden">
+				<button class="file-upload-btn" id="fileUploadBtn">Choisir une image</button>
+				<div id="fileName" class="file-name">Aucun fichier sélectionné</div>
+			</div>
+		</div>
+		
+		<!-- 2. ALGORITHME - Sélection du dithering (priorité haute) -->
+		<div class="control-item">
+			<label for="algorithmSelect">Algorithme</label>
+			<select id="algorithmSelect" class="algorithm-select">
+				<option value="floyd-steinberg">Floyd-Steinberg</option>
+				<option value="random">Random Dithering</option>
+				<option value="random-rgb">Random Dithering RGB</option>
+			</select>
+		</div>
+		
+		<!-- 3. PARAMÈTRES PRINCIPAUX - Contrôles visuels (ordre logique) -->
+        <div class="control-item">
+			<label for="ditherSlider">Intensité</label>
+			<div class="input-group">
+				<input type="range" id="ditherSlider" min="0" max="1" step="0.1" value="1">
+				<input type="number" id="ditherInput" min="0" max="1" step="0.1" value="1.0" class="value-input">
+			</div>
+		</div>
+		
+		<div class="control-item">
+			<label for="pixelSizeSlider">Taille de pixel</label>
+			<div class="input-group">
+				<input type="range" id="pixelSizeSlider" min="1" max="8" step="1" value="1">
+				<input type="number" id="pixelSizeInput" min="1" max="8" step="1" value="1" class="value-input">
+			</div>
+		</div>
+		
+		<!-- 4. AJUSTEMENTS COLORIMÉTRIQUES - Regroupés logiquement -->
+		<div class="control-item">
+			<label for="brightnessSlider">Luminosité</label>
+			<div class="input-group">
+				<input type="range" id="brightnessSlider" min="-100" max="100" step="5" value="0">
+				<input type="number" id="brightnessInput" min="-100" max="100" step="5" value="0" class="value-input">
+			</div>
+		</div>
+		
+		<div class="control-item">
+			<label for="contrastSlider">Contraste</label>
+			<div class="input-group">
+				<input type="range" id="contrastSlider" min="-100" max="100" step="5" value="0">
+				<input type="number" id="contrastInput" min="-100" max="100" step="5" value="0" class="value-input">
+			</div>
+		</div>
+		
+		<!-- 5. CONTRÔLES SPÉCIALISÉS - Conditionnels par algorithme -->
+		<div class="control-item hidden" id="randomControls">
+			<label for="thresholdSlider">Seuil de bruit</label>
+			<div class="input-group">
+				<input type="range" id="thresholdSlider" min="0" max="100" step="5" value="50">
+				<input type="number" id="thresholdInput" min="0" max="100" step="5" value="50" class="value-input">
+			</div>
+		</div>
+		
+		<!-- 6. ACTIONS - Bouton de téléchargement en fin -->
+		<button id="downloadBtn" class="download-btn">Télécharger l'image</button>
+		
+		<!-- 7. FEEDBACK - Indicateur de progression (position optimale) -->
+		<div id="processingIndicator" class="processing-indicator" style="display: none;">
+			<div class="progress-bar">
+				<div class="progress-fill"></div>
+			</div>
+			<p>Traitement en cours...</p>
+		</div>
+	</div>
+	
+	<!-- ===== ZONE DE RENDU PRINCIPAL ===== -->
+	<main id="sketch-container">
+		<!-- Le canvas p5.js sera inséré automatiquement ici -->
+	</main>
+</body>
+</html>

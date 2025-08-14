@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mangrove Design System - Documentation et Exemples</title>
+    <meta name="description" content="Système de design professionnel pour les outils Mangrove">
+    
+    <link rel="stylesheet" href="src/css/design-system.css">
+    <style>
+        /* Styles spécifiques à la documentation */
+        .demo-section {
+            margin-bottom: var(--space-12);
+            padding: var(--space-6);
+            border: 1px solid var(--color-border-primary);
+            border-radius: var(--radius-lg);
+            background: var(--color-bg-tertiary);
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+        
+        .demo-item {
+            padding: var(--space-4);
+            border: 1px solid var(--color-border-primary);
+            border-radius: var(--radius-base);
+            background: var(--color-bg-secondary);
+        }
+        
+        .demo-code {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border-primary);
+            border-radius: var(--radius-base);
+            padding: var(--space-3);
+            margin-top: var(--space-3);
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+            overflow-x: auto;
+        }
+        
+        .color-swatch {
+            width: 100%;
+            height: 60px;
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-2);
+            border: 1px solid var(--color-border-primary);
+        }
+        
+        .header-nav {
+            background: var(--color-bg-tertiary);
+            backdrop-filter: var(--blur-base);
+            border-bottom: 1px solid var(--color-border-primary);
+            padding: var(--space-4) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-3);
+        }
+        
+        .nav-link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-base);
+            transition: all var(--transition-base);
+        }
+        
+        .nav-link:hover {
+            background: var(--color-surface);
+            color: var(--color-text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header avec navigation -->
+    <header class="header-nav">
+        <div class="container">
+            <h1 class="text-2xl font-bold text-primary">🎨 Mangrove Design System</h1>
+            <p class="text-secondary">Système de design professionnel et modulaire</p>
+            <nav class="nav-links">
+                <a href="#colors" class="nav-link">Couleurs</a>
+                <a href="#typography" class="nav-link">Typographie</a>
+                <a href="#buttons" class="nav-link">Boutons</a>
+                <a href="#forms" class="nav-link">Formulaires</a>
+                <a href="#components" class="nav-link">Composants</a>
+                <a href="#layouts" class="nav-link">Layouts</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-16);">
+        
+        <!-- Section Couleurs -->
+        <section id="colors" class="demo-section">
+            <h2 class="text-xl font-semibold text-primary">🎨 Couleurs</h2>
+            <p class="text-secondary">Palette de couleurs avec support du thème sombre/clair</p>
+            
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary">Couleurs Principales</h3>
+                    <div class="color-swatch" style="background: var(--primary-500);"></div>
+                    <code class="text-xs">--primary-500</code>
+                </div>
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary">Arrière-plan</h3>
+                    <div class="color-swatch" style="background: var(--color-bg-primary); border: 2px solid var(--color-border-primary);"></div>
+                    <code class="text-xs">--color-bg-primary</code>
+                </div>
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary">Surface</h3>
+                    <div class="color-swatch" style="background: var(--color-surface);"></div>
+                    <code class="text-xs">--color-surface</code>
+                </div>
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary">Bordures</h3>
+                    <div class="color-swatch" style="background: var(--color-border-primary);"></div>
+                    <code class="text-xs">--color-border-primary</code>
+                </div>
+            </div>
+            
+            <!-- Toggle thème -->
+            <div class="flex items-center gap-4" style="margin-top: var(--space-6);">
+                <span class="text-secondary">Thème :</span>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="text-secondary">Sombre / Clair</span>
+            </div>
+        </section>
+
+        <!-- Section Typographie -->
+        <section id="typography" class="demo-section">
+            <h2 class="text-xl font-semibold text-primary">📝 Typographie</h2>
+            <p class="text-secondary">Système typographique responsive et accessible</p>
+            
+            <div class="stack-lg" style="margin-top: var(--space-4);">
+                <div>
+                    <h1 class="text-4xl font-bold text-primary">Titre Niveau 1</h1>
+                    <code class="demo-code">class="text-4xl font-bold text-primary"</code>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold text-primary">Titre Niveau 2</h2>
+                    <code class="demo-code">class="text-2xl font-semibold text-primary"</code>
+                </div>
+                <div>
+                    <h3 class="text-xl font-medium text-primary">Titre Niveau 3</h3>
+                    <code class="demo-code">class="text-xl font-medium text-primary"</code>
+                </div>
+                <div>
+                    <p class="text-base text-secondary">Texte de base avec une couleur secondaire pour une meilleure hiérarchie visuelle.</p>
+                    <code class="demo-code">class="text-base text-secondary"</code>
+                </div>
+                <div>
+                    <p class="text-sm text-tertiary">Texte petit en couleur tertiaire, idéal pour les métadonnées.</p>
+                    <code class="demo-code">class="text-sm text-tertiary"</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Boutons -->
+        <section id="buttons" class="demo-section">
+            <h2 class="text-xl font-semibold text-primary">🔘 Boutons</h2>
+            <p class="text-secondary">Boutons avec variantes, tailles et états</p>
+            
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary mb-3">Variantes</h3>
+                    <div class="stack">
+                        <button class="btn btn-primary">Primaire</button>
+                        <button class="btn btn-secondary">Secondaire</button>
+                        <button class="btn btn-ghost">Ghost</button>
+                    </div>
+                </div>
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary mb-3">Tailles</h3>
+                    <div class="stack">
+                        <button class="btn btn-primary btn-sm">Petit</button>
+                        <button class="btn btn-primary">Normal</button>
+                        <button class="btn btn-primary btn-lg">Grand</button>
+                    </div>
+                </div>
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary mb-3">États</h3>
+                    <div class="stack">
+                        <button class="btn btn-primary">Normal</button>
+                        <button class="btn btn-primary" disabled>Désactivé</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Formulaires -->
+        <section id="forms" class="demo-section">
+            <h2 class="text-xl font-semibold text-primary">📋 Formulaires</h2>
+            <p class="text-secondary">Éléments de formulaire cohérents et accessibles</p>
+            
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary mb-3">Inputs</h3>
+                    <div class="stack">
+                        <input type="text" class="input" placeholder="Input normal">
+                        <input type="text" class="input input-sm" placeholder="Input petit">
+                        <input type="text" class="input input-lg" placeholder="Input grand">
+                    </div>
+                </div>
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary mb-3">Sélecteurs</h3>
+                    <div class="stack">
+                        <div class="select">
+                            <select>
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary mb-3">Curseurs</h3>
+                    <div class="stack">
+                        <input type="range" class="range" min="0" max="100" value="50">
+                        <div class="input-group">
+                            <input type="range" class="range" min="0" max="100" value="75">
+                            <input type="number" class="input" value="75" style="width: 80px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary mb-3">Cases à cocher</h3>
+                    <div class="stack">
+                        <label class="checkbox">
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                            <span>Option cochée</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span>Option non cochée</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Composants -->
+        <section id="components" class="demo-section">
+            <h2 class="text-xl font-semibold text-primary">🧩 Composants</h2>
+            <p class="text-secondary">Composants réutilisables et modulaires</p>
+            
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary mb-3">Cartes</h3>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Titre de la carte</h4>
+                        </div>
+                        <div class="card-content">
+                            <p>Contenu de la carte avec du texte descriptif.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary mb-3">Switch</h3>
+                    <div class="stack">
+                        <div class="flex items-center gap-3">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <span class="text-secondary">Option désactivée</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span class="text-secondary">Option activée</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-item">
+                    <h3 class="font-medium text-primary mb-3">Progression</h3>
+                    <div class="stack">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 30%;"></div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Layouts -->
+        <section id="layouts" class="demo-section">
+            <h2 class="text-xl font-semibold text-primary">📐 Layouts</h2>
+            <p class="text-secondary">Systèmes de mise en page flexibles</p>
+            
+            <div class="stack-lg">
+                <div>
+                    <h3 class="font-medium text-primary mb-3">Stack (Vertical)</h3>
+                    <div class="stack" style="max-width: 300px;">
+                        <div class="p-3 rounded" style="background: var(--color-surface);">Élément 1</div>
+                        <div class="p-3 rounded" style="background: var(--color-surface);">Élément 2</div>
+                        <div class="p-3 rounded" style="background: var(--color-surface);">Élément 3</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-primary mb-3">Cluster (Horizontal)</h3>
+                    <div class="cluster">
+                        <div class="p-3 rounded" style="background: var(--color-surface);">Élément A</div>
+                        <div class="p-3 rounded" style="background: var(--color-surface);">Élément B</div>
+                        <div class="p-3 rounded" style="background: var(--color-surface);">Élément C</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-primary mb-3">Sidebar Layout</h3>
+                    <div class="sidebar">
+                        <div class="p-4 rounded" style="background: var(--color-surface);">
+                            <h4 class="font-medium">Sidebar</h4>
+                            <p class="text-sm text-secondary">Contenu de la barre latérale</p>
+                        </div>
+                        <div class="p-4 rounded" style="background: var(--color-surface);">
+                            <h4 class="font-medium">Contenu principal</h4>
+                            <p class="text-sm text-secondary">Zone de contenu principal qui s'étend</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Utilisation -->
+        <section class="demo-section">
+            <h2 class="text-xl font-semibold text-primary">🚀 Utilisation</h2>
+            <p class="text-secondary">Comment utiliser le design system dans vos projets</p>
+            
+            <div class="stack-lg" style="margin-top: var(--space-6);">
+                <div>
+                    <h3 class="font-medium text-primary">1. Importer le CSS</h3>
+                    <code class="demo-code">&lt;link rel="stylesheet" href="src/css/design-system.css"&gt;</code>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-primary">2. Utiliser les classes utilitaires</h3>
+                    <code class="demo-code">&lt;button class="btn btn-primary btn-lg"&gt;Mon bouton&lt;/button&gt;</code>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-primary">3. Utiliser les variables CSS</h3>
+                    <code class="demo-code">
+.mon-composant {
+  background: var(--color-bg-secondary);
+  padding: var(--space-4);
+  border-radius: var(--radius-base);
+}</code>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-primary">4. Gestion des thèmes</h3>
+                    <code class="demo-code">
+// JavaScript pour basculer le thème
+document.documentElement.setAttribute('data-theme', 'light');
+document.documentElement.setAttribute('data-theme', 'dark');</code>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Script pour le toggle de thème
+        const themeToggle = document.getElementById('themeToggle');
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        
+        if (currentTheme === 'light') {
+            themeToggle.checked = true;
+        }
+        
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>

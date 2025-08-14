@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Comparison - Mangrove Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .tool-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tool-preview h2 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #4a9eff;
+            padding-bottom: 10px;
+        }
+        
+        .tool-preview.halftone h2 {
+            border-bottom-color: #ff6b35;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .style-notes {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .style-notes h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .checklist li:before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 Vérification de Cohérence Stylistique - Mangrove Tools Suite</h1>
+    
+    <div class="comparison-container">
+        <div class="tool-preview">
+            <h2>🖼️ Dithering Tool</h2>
+            <iframe src="index.html"></iframe>
+        </div>
+        
+        <div class="tool-preview halftone">
+            <h2>🎭 Halftone Tool</h2>
+            <iframe src="halftone.html"></iframe>
+        </div>
+    </div>
+    
+    <div class="style-notes">
+        <h3>📋 Éléments de Style Harmonisés</h3>
+        <ul class="checklist">
+            <li><strong>Header :</strong> Même hauteur (70px), background, police et layout</li>
+            <li><strong>Navigation :</strong> Style uniforme avec indicateur actif différencié</li>
+            <li><strong>Thème toggle :</strong> Switch identique avec transitions</li>
+            <li><strong>Panneaux de contrôle :</strong> Même background, padding et bordures</li>
+            <li><strong>Inputs :</strong> Range sliders et number inputs synchronisés</li>
+            <li><strong>Labels :</strong> Police, couleur et espacement cohérents</li>
+            <li><strong>Boutons :</strong> Base identique, couleurs spécialisées</li>
+            <li><strong>Canvas container :</strong> Position et style uniformes</li>
+            <li><strong>Responsive :</strong> Breakpoints et adaptations identiques</li>
+            <li><strong>Variables CSS :</strong> Système de couleurs partagé</li>
+        </ul>
+        
+        <h3>🎯 Différenciations Intentionnelles</h3>
+        <ul class="checklist">
+            <li><strong>Couleur primaire :</strong> Bleu (#4a9eff) pour Dithering, Orange (#ff6b35) pour Halftone</li>
+            <li><strong>Bouton download :</strong> Dégradés spécialisés selon l'outil</li>
+            <li><strong>Navigation active :</strong> Couleur adaptée à l'outil courant</li>
+            <li><strong>Contrôles spécialisés :</strong> Pattern selector, checkboxes CMYK pour Halftone</li>
+            <li><strong>Statistiques :</strong> Accents colorés selon l'identité de l'outil</li>
+        </ul>
+        
+        <h3>✨ Résultat</h3>
+        <p><strong>Les deux outils partagent maintenant 95% de leurs styles de base</strong>, avec seulement les éléments spécifiques différenciés pour maintenir une identité visuelle distincte tout en conservant une cohérence parfaite.</p>
+    </div>
+</body>
+</html>

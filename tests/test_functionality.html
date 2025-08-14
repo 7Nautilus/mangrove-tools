@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test des Fonctionnalités</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; }
+        .error { background-color: #f8d7da; }
+    </style>
+</head>
+<body>
+    <h1>Test des Fonctionnalités - Dithering Tool Pro</h1>
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(testName, success, message) {
+            const div = document.createElement('div');
+            div.className = `test ${success ? 'success' : 'error'}`;
+            div.innerHTML = `<strong>${testName}:</strong> ${success ? '✅ SUCCÈS' : '❌ ÉCHEC'} - ${message}`;
+            results.appendChild(div);
+        }
+
+        // Test 1: Chargement de p5.js
+        if (typeof p5 !== 'undefined') {
+            addResult('p5.js', true, 'Librairie p5.js chargée correctement');
+        } else {
+            addResult('p5.js', false, 'p5.js non disponible');
+        }
+
+        // Test 2: Vérification des fichiers CSS
+        fetch('src/css/style.css')
+            .then(response => {
+                addResult('CSS', response.ok, response.ok ? 'Fichier CSS accessible' : `Erreur ${response.status}`);
+            })
+            .catch(error => {
+                addResult('CSS', false, 'Fichier CSS non trouvé');
+            });
+
+        // Test 3: Vérification du fichier JavaScript
+        fetch('src/js/sketch.js')
+            .then(response => {
+                addResult('JavaScript', response.ok, response.ok ? 'Fichier JS accessible' : `Erreur ${response.status}`);
+            })
+            .catch(error => {
+                addResult('JavaScript', false, 'Fichier JS non trouvé');
+            });
+
+        // Test 4: Simulation de l'interface (après chargement)
+        setTimeout(() => {
+            const iframe = document.createElement('iframe');
+            iframe.src = 'index.html';
+            iframe.style.display = 'none';
+            iframe.onload = () => {
+                try {
+                    const doc = iframe.contentDocument;
+                    
+                    // Vérifier les éléments principaux
+                    const elements = [
+                        'imageUpload',
+                        'algorithmSelect', 
+                        'ditherSlider',
+                        'brightnessSlider',
+                        'contrastSlider',
+                        'downloadBtn'
+                    ];
+                    
+                    let allFound = true;
+                    elements.forEach(id => {
+                        if (!doc.getElementById(id)) {
+                            allFound = false;
+                            addResult(`Élément ${id}`, false, 'Élément manquant');
+                        }
+                    });
+                    
+                    if (allFound) {
+                        addResult('Interface', true, 'Tous les éléments essentiels présents');
+                    }
+                    
+                } catch (error) {
+                    addResult('Interface', false, 'Erreur d\'accès à l\'iframe: ' + error.message);
+                }
+            };
+            document.body.appendChild(iframe);
+        }, 1000);
+
+        // Test 5: Vérification de la structure des fichiers
+        const requiredFiles = [
+            'index.html',
+            'src/css/style.css',
+            'src/js/sketch.js'
+        ];
+
+        requiredFiles.forEach(file => {
+            fetch(file)
+                .then(response => {
+                    if (response.ok) {
+                        addResult(`Fichier ${file}`, true, 'Fichier présent et accessible');
+                    } else {
+                        addResult(`Fichier ${file}`, false, `Erreur HTTP ${response.status}`);
+                    }
+                })
+                .catch(error => {
+                    addResult(`Fichier ${file}`, false, 'Fichier non accessible');
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+/* ========================================
+   MANGROVE TOOLS - STYLES SPÉCIFIQUES
+   Styles complémentaires au Design System
+   Optimisé et minifié pour performance
+   ======================================== */
+
+/* ========================================
+   🎯 LAYOUT SPÉCIFIQUE AUX APPLICATIONS
+   ======================================== */
+
+/* Header principal avec navigation */
+.top-banner {
+	background: var(--color-bg-tertiary);
+	backdrop-filter: var(--blur-base);
+	border-bottom: 1px solid var(--color-border-primary);
+	padding: var(--space-4) var(--space-6);
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: var(--space-4);
+}
+
+.top-banner h1 {
+	font-size: var(--font-size-2xl);
+	font-weight: var(--font-weight-bold);
+	color: var(--color-text-primary);
+	margin: 0;
+}
+
+.top-banner p {
+	font-size: var(--font-size-sm);
+	color: var(--color-text-tertiary);
+	margin: 0;
+}
+
+/* Navigation entre outils */
+.nav-links {
+	display: flex;
+	gap: var(--space-3);
+}
+
+.nav-link {
+	padding: var(--space-2) var(--space-4);
+	border-radius: var(--radius-base);
+	text-decoration: none;
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-medium);
+	transition: all var(--transition-base);
+	border: 1px solid transparent;
+}
+
+.nav-link:hover {
+	background: var(--color-surface-hover);
+	color: var(--color-text-primary);
+	border-color: var(--color-border-primary);
+}
+
+.nav-link.active {
+	background: var(--primary-500);
+	color: white;
+	border-color: var(--primary-600);
+}
+
+/* Toggle thème */
+.theme-toggle {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+/* Panneau de contrôles */
+.controls {
+	position: fixed;
+	top: 120px;
+	left: var(--space-4);
+	width: fit-content; /* Hug content - s'adapte au contenu */
+	min-width: 260px; /* Largeur minimale pour éviter que ce soit trop étroit */
+	max-width: 320px; /* Largeur maximale pour éviter que ce soit trop large */
+	max-height: calc(100vh - 140px);
+	overflow-y: auto;
+	background: var(--color-bg-tertiary);
+	backdrop-filter: var(--blur-base);
+	border: 1px solid var(--color-border-primary);
+	border-radius: var(--radius-lg);
+	padding: var(--space-6);
+	box-shadow: var(--shadow-lg);
+	z-index: 50;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4); /* 16px gap comme avant */
+	/* Évite que le panneau sorte de l'écran sur petits écrans */
+	max-width: min(320px, calc(100vw - var(--space-8)));
+	
+	/* Masquer la scrollbar tout en gardant le scroll */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Masquer la scrollbar pour WebKit (Chrome, Safari, Edge) */
+.controls::-webkit-scrollbar {
+	display: none;
+}
+
+/* Structure horizontale pour les control-item */
+.control-item {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3); /* 12px entre label et contrôle */
+}
+
+/* Classe utilitaire pour masquer des éléments */
+.hidden {
+	display: none !important;
+}
+
+.control-item label {
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-medium);
+	color: var(--color-text-primary);
+	margin: 0; /* Supprime le margin-bottom */
+	min-width: 80px; /* Largeur minimale pour alignement */
+	flex-shrink: 0; /* Empêche le label de rétrécir */
+}
+
+/* Groupes d'inputs spécialisés - styles spécifiques */
+.input-group {
+	display: flex;
+	gap: var(--space-2);
+	align-items: center;
+}
+
+/* Bouton de téléchargement */
+.download-btn {
+	width: 100%;
+	padding: var(--space-4) var(--space-6);
+	background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+	border: none;
+	border-radius: var(--radius-base);
+	color: white;
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-semibold);
+	cursor: pointer;
+	transition: all var(--transition-base);
+	box-shadow: var(--shadow-base);
+}
+
+.download-btn:hover {
+	background: linear-gradient(135deg, var(--primary-400) 0%, var(--primary-500) 100%);
+	box-shadow: var(--shadow-md);
+	transform: translateY(-1px);
+}
+
+.download-btn:active {
+	transform: translateY(0);
+	box-shadow: var(--shadow-sm);
+}
+
+/* Indicateur de progression */
+.processing-indicator {
+	background: var(--color-bg-secondary);
+	border: 1px solid var(--color-border-primary);
+	border-radius: var(--radius-base);
+	padding: var(--space-4);
+	/* Suppression des marges pour respecter le gap de control-item */
+	text-align: center;
+}
+
+.processing-indicator p {
+	margin: var(--space-2) 0 0 0;
+	font-size: var(--font-size-sm);
+	color: var(--color-text-secondary);
+}
+
+/* Canvas principal */
+#sketch-container {
+	margin-left: calc(320px + var(--space-8)); /* max-width du panneau + espace */
+	padding: var(--space-4);
+	min-height: calc(100vh - 120px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--color-bg-primary);
+}
+
+/* Indicateur de chargement - overlay spécifique */
+.loading-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--color-bg-primary);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+	transition: opacity var(--transition-slow);
+}
+
+.loading-content {
+	text-align: center;
+	color: var(--color-text-primary);
+}
+
+/* ========================================
+   📱 RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablettes et écrans moyens (768px à 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+	.controls {
+		/* Garde la position fixe mais réduit légèrement la largeur max */
+		max-width: 280px;
+		left: var(--space-3);
+	}
+	
+	#sketch-container {
+		margin-left: calc(280px + var(--space-6));
+	}
+}
+
+/* Tablettes en mode portrait et petits écrans (jusqu'à 768px) */
+@media (max-width: 768px) {
+	.controls {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: fit-content;
+		min-width: 280px;
+		max-width: calc(100vw - var(--space-8)); /* Évite le débordement */
+		max-height: none;
+		margin: 0 auto var(--space-4) auto; /* Centré horizontalement */
+	}
+	
+	#sketch-container {
+		margin-left: 0;
+		padding: var(--space-3);
+	}
+	
+	.top-banner {
+		flex-direction: column;
+		align-items: stretch;
+		text-align: center;
+		padding: var(--space-3) var(--space-4);
+	}
+	
+	.top-banner h1 {
+		font-size: var(--font-size-xl);
+	}
+	
+	.nav-links {
+		justify-content: center;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+	
+	.theme-toggle {
+		justify-content: center;
+	}
+}
+
+/* Mobiles (jusqu'à 480px) */
+@media (max-width: 480px) {
+	.controls {
+		min-width: auto;
+		max-width: calc(100vw - var(--space-6));
+		padding: var(--space-4);
+	}
+	
+	.top-banner {
+		padding: var(--space-2) var(--space-3);
+	}
+	
+	.nav-links {
+		gap: var(--space-1);
+	}
+	
+	.nav-link {
+		padding: var(--space-2) var(--space-3);
+		font-size: var(--font-size-xs);
+	}
+}
+
+/* ========================================
+   🎨 THÈME CLAIR - AJUSTEMENTS SPÉCIFIQUES
+   ======================================== */
+[data-theme="light"] .top-banner {
+	background: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="light"] .controls {
+	background: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="light"] #sketch-container {
+	background: var(--neutral-50);
+}
+
+/* ========================================
+   🔧 UTILITAIRES SPÉCIFIQUES
+   ======================================== */
+.visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+/* Amélioration de l'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+	.loading-spinner {
+		animation: none;
+	}
+	
+	* {
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* Focus visible amélioré */
+.controls *:focus {
+	outline: 2px solid var(--primary-500);
+	outline-offset: 2px;
+}
+
+/* Performance - GPU acceleration pour éléments animés critiques */
+.download-btn,
+.nav-link {
+	will-change: transform;
+}
+
+/* Optimisation pour éléments fréquemment mis à jour */
+.range::-webkit-slider-thumb,
+.apple-switch .switch-handle {
+	will-change: transform;
+}

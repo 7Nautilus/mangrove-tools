@@ -1,0 +1,106 @@
+{
+  "name": "dithering-tool-pro",
+  "version": "2.1.0",
+  "description": "Professional multi-algorithm dithering tool with modern interface and advanced controls for artistic and creative image processing",
+  "main": "index.html",
+  "type": "module",
+  "keywords": [
+    "dithering",
+    "image-processing",
+    "p5js",
+    "floyd-steinberg",
+    "random-dithering",
+    "pixel-art",
+    "creative-coding",
+    "web-app",
+    "canvas",
+    "graphics",
+    "artistic-effects",
+    "visual-arts",
+    "digital-art",
+    "image-filters"
+  ],
+  "author": {
+    "name": "GitHub Copilot Assistant",
+    "email": "copilot@github.com",
+    "url": "https://github.com/features/copilot"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/username/dithering-tool-pro#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/dithering-tool-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/dithering-tool-pro/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0",
+    "python": ">=3.8.0"
+  },
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "http-server -p 8000 -c-1",
+    "test": "open tests/test_functionality.html",
+    "test:debug": "node tests/debug_console.js",
+    "build": "echo 'Static application - no build process required'",
+    "lint": "echo 'No linter configured - pure vanilla JS project'",
+    "docs": "echo 'Documentation available in docs/ folder'",
+    "clean": "echo 'No build artifacts to clean'",
+    "validate": "echo 'Run npm test to validate functionality'",
+    "preview": "python -m http.server 3000",
+    "dev": "python -m http.server 8080"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "peerDependencies": {
+    "p5": "^1.9.0"
+  },
+  "browser": {
+    "./src/js/sketch.js": "./src/js/sketch.js",
+    "./src/css/style.css": "./src/css/style.css"
+  },
+  "files": [
+    "index.html",
+    "src/",
+    "assets/",
+    "docs/",
+    "tests/",
+    "scripts/",
+    "config/LICENSE",
+    "README.md"
+  ],
+  "config": {
+    "port": 8000,
+    "host": "localhost"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/github"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ]
+}

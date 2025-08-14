@@ -1,0 +1,278 @@
+/* ========================================
+   HALFTONE TOOL PRO v1.0 - CSS PROFESSIONNEL
+   Styles spécifiques avec Design System centralisé
+   (hérite des styles de base de style.css)
+   ======================================== */
+
+/* ========================================
+   VARIABLES CSS POUR THÈME HALFTONE OPTIMISÉ
+   ======================================== */
+:root {
+	/* === COULEURS SPÉCIFIQUES HALFTONE === */
+	--halftone-primary: #ff6b35;       /* Orange pour l'identité halftone */
+	--halftone-secondary: #f7931e;     /* Orange secondaire */
+	--halftone-accent: #ffbe0b;        /* Jaune accent */
+	--pattern-bg: rgba(255, 107, 53, 0.1); /* Arrière-plan des patterns */
+	
+	/* === COULEURS CMYK PROFESSIONNELLES === */
+	--cmyk-cyan: #00aeef;
+	--cmyk-magenta: #ec008c;
+	--cmyk-yellow: #fff200;
+	--cmyk-black: #2e3192;
+}
+
+/* === PALETTE DE COULEURS MODE CLAIR HALFTONE === */
+[data-theme="light"] {
+	/* Redéfinition des variables halftone pour le thème clair */
+	--halftone-primary: #e55a2b;
+	--halftone-secondary: #d4841c;
+	--pattern-bg: rgba(229, 90, 43, 0.1);
+}
+
+/* ========================================
+   SÉLECTEUR DE PATTERN PROFESSIONNEL
+   ======================================== */
+.pattern-select {
+	background: var(--input-bg);
+	border: 2px solid var(--input-border);
+	border-radius: var(--border-radius);
+	color: var(--input-text);
+	padding: 12px 16px;
+	font-size: 14px;
+	font-weight: 500;
+	width: 100%;
+	cursor: pointer;
+	transition: var(--transition-fast);
+	position: relative;
+}
+
+.pattern-select:focus {
+	outline: none;
+	border-color: var(--halftone-primary);
+	box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+}
+
+.pattern-select:hover {
+	border-color: var(--halftone-secondary);
+}
+
+.pattern-select option {
+	padding: 10px;
+	background: var(--input-bg);
+	color: var(--input-text);
+}
+
+/* ========================================
+   CONTRÔLES SPÉCIFIQUES HALFTONE OPTIMISÉS
+   ======================================== */
+
+/* Layout pour les items avec checkbox - grid hérité de .control-item */
+.checkbox-item {
+	/* Utilise le grid hérité de .control-item */
+	/* display: grid; déjà défini par .control-item */
+	/* grid-template-columns: auto 1fr; déjà défini par .control-item */
+	align-items: center;
+}
+
+/* Checkbox styling professionnel pour options avancées */
+.checkbox-input {
+	width: 18px;
+	height: 18px;
+	margin: 0;
+	accent-color: var(--halftone-primary);
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+.checkbox-input:focus {
+	outline: 2px solid var(--halftone-primary);
+	outline-offset: 2px;
+}
+
+/* Label professionnel pour checkbox */
+.checkbox-label {
+	color: var(--text-color);
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	margin: 0;
+	user-select: none;
+	transition: color var(--transition-fast);
+}
+
+.checkbox-label:hover {
+	color: var(--text-primary);
+}
+
+/* ========================================
+   GROUPES DE CONTRÔLES PROFESSIONNELS
+   ======================================== */
+/* Groupes de contrôles avec séparateurs visuels optimisés */
+.control-group {
+	border: 1px solid var(--panel-border);
+	border-radius: var(--border-radius);
+	padding: 16px;
+	margin-bottom: 16px;
+	background: var(--pattern-bg);
+}
+
+.control-group h4 {
+	margin: 0 0 12px 0;
+	color: var(--halftone-primary);
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+/* ========================================
+   INDICATEURS VISUELS PROFESSIONNELS
+   ======================================== */
+
+/* Prévisualisation du pattern en temps réel optimisée */
+.pattern-preview {
+	width: 60px;
+	height: 60px;
+	border: 2px solid var(--input-border);
+	border-radius: var(--border-radius);
+	margin-left: 12px;
+	background: var(--input-bg);
+	position: relative;
+	overflow: hidden;
+}
+
+.pattern-preview::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 8px;
+	height: 8px;
+	background: var(--text-color);
+	border-radius: 50%;
+}
+
+/* Patterns différents pour la prévisualisation optimisés */
+.pattern-preview.dots::before {
+	border-radius: 50%;
+}
+
+.pattern-preview.lines::before {
+	width: 40px;
+	height: 2px;
+	border-radius: 1px;
+}
+
+.pattern-preview.diamond::before {
+	transform: translate(-50%, -50%) rotate(45deg);
+	border-radius: 2px;
+}
+
+.pattern-preview.square::before {
+	border-radius: 2px;
+}
+
+/* ========================================
+   BOUTON TÉLÉCHARGEMENT HALFTONE
+   ======================================== */
+.download-btn {
+	background: linear-gradient(135deg, var(--halftone-primary) 0%, var(--halftone-secondary) 100%) !important;
+	border: none;
+	color: white;
+	padding: 14px 24px;
+	border-radius: var(--border-radius);
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: var(--transition-normal);
+	box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+	width: 100%;
+	margin-top: 16px;
+}
+
+.download-btn:hover {
+	background: linear-gradient(135deg, var(--halftone-secondary) 0%, var(--halftone-primary) 100%) !important;
+	box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
+	transform: translateY(-2px);
+}
+
+.download-btn:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+}
+
+.download-btn:disabled {
+	background: var(--input-border) !important;
+	color: var(--label-color);
+	cursor: not-allowed;
+	box-shadow: none;
+	transform: none;
+}
+
+/* ========================================
+   NAVIGATION HALFTONE PROFESSIONNELLE
+   ======================================== */
+.nav-link.active {
+	background: linear-gradient(135deg, var(--halftone-primary) 0%, var(--halftone-secondary) 100%) !important;
+	color: white;
+	border-color: var(--halftone-primary);
+}
+
+/* ========================================
+   STATISTIQUES HALFTONE OPTIMISÉES
+   ======================================== */
+.stats h4 {
+	color: var(--halftone-primary);
+}
+
+.stats span {
+	color: var(--halftone-primary);
+}
+
+/* ========================================
+   MODES SPÉCIAUX PROFESSIONNELS
+   ======================================== */
+
+/* Mode CMYK avec couleurs spécialisées optimisées */
+.cmyk-mode .controls {
+	border-left: 4px solid var(--cmyk-cyan);
+}
+
+.cmyk-mode .pattern-preview::before {
+	background: linear-gradient(45deg, var(--cmyk-cyan), var(--cmyk-magenta), var(--cmyk-yellow), var(--cmyk-black));
+}
+
+/* Mode inversion professionnel */
+.invert-mode {
+	filter: invert(1) hue-rotate(180deg);
+}
+
+/* ========================================
+   ANIMATIONS PROFESSIONNELLES OPTIMISÉES
+   ======================================== */
+
+/* Animation pour la prévisualisation des patterns optimisée */
+@keyframes patternPulse {
+	0%, 100% { opacity: 0.7; }
+	50% { opacity: 1; }
+}
+
+.pattern-preview.active::before {
+	animation: patternPulse 2s ease-in-out infinite;
+}
+
+/* Animation pour l'indicateur de traitement optimisée */
+.processing-indicator .progress-fill {
+	background: linear-gradient(90deg, var(--halftone-primary), var(--halftone-secondary), var(--halftone-accent));
+}
+
+/* ========================================
+   RESPONSIVE DESIGN HALFTONE OPTIMISÉ
+   ======================================== */
+@media (max-width: 768px) {
+	.pattern-preview {
+		width: 40px;
+		height: 40px;
+	}
+}

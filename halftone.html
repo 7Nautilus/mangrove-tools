@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<!-- Meta tags essentiels (ordre standard) -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MANGROVE</title>
+	<meta name="description" content="Outil professionnel de halftone avec multiple patterns, contrôles de densité/taille et préréglages optimisés">
+	<meta name="keywords" content="halftone, dot pattern, screen printing, cmyk, vintage effect, retro, ben day dots">
+	
+	<!-- Préchargement des ressources critiques (optimisation performance) -->
+	<link rel="preload" href="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js" as="script">
+	<link rel="preload" href="src/css/design-system.css" as="style">
+	<link rel="preload" href="src/css/style.css" as="style">
+	<link rel="preload" href="src/js/common.js" as="script">
+	<link rel="preload" href="src/js/halftone-sketch.js" as="script">
+	
+	<!-- Feuilles de style (ordre d'importance) -->
+	<link rel="stylesheet" href="src/css/design-system.css">
+	<link rel="stylesheet" href="src/css/style.css">
+	
+	<!-- Scripts (ordre de dépendances) -->
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js" defer></script>
+	<script src="src/js/common.js" defer></script>
+	<script src="src/js/halftone-sketch.js" defer></script>
+	
+	<!-- Script d'initialisation optimisé -->
+	<script>
+		// Masquer l'indicateur de chargement une fois l'application prête
+		window.addEventListener('load', () => {
+			setTimeout(() => {
+				const loadingIndicator = document.getElementById('loading-indicator');
+				if (loadingIndicator) {
+					loadingIndicator.style.display = 'none';
+				}
+			}, 500);
+		});
+		
+		// Logging pour débogage
+		console.log('Halftone Tool Pro v1.0 - Initialisé avec succès');
+	</script>
+</head>
+<body>
+	<!-- Indicateur de chargement global -->
+	<div id="loading-indicator" class="loading-overlay">
+		<div class="loading-content">
+			<div class="loading-spinner"></div>
+			<p>Chargement de l'outil Halftone...</p>
+		</div>
+	</div>
+
+	<header class="top-banner">
+		<h1>MANGROVE</h1>
+		<p>Halftone Tool</p>
+		<div class="nav-links">
+			<a href="index.html" class="nav-link">Dithering Tool</a>
+			<a href="halftone.html" class="nav-link active">Halftone Tool</a>
+		</div>
+		<div class="theme-toggle">
+			<span class="theme-label">Light</span>
+			<div class="apple-switch" id="themeSwitch">
+				<div class="switch-handle"></div>
+			</div>
+			<span class="theme-label">Dark</span>
+		</div>
+	</header>
+	
+	<!-- ===== PANNEAU DE CONTRÔLES ===== -->
+	<div class="controls">
+		<!-- 1. INPUT - Sélection d'image (priorité haute) -->
+		<div class="control-item">
+			<label for="imageUpload">Image</label>
+			<div class="file-upload-wrapper">
+				<input type="file" id="imageUpload" accept="image/*" class="file-input-hidden">
+				<button class="file-upload-btn" id="fileUploadBtn">Choisir une image</button>
+				<div id="fileName" class="file-name">Aucun fichier sélectionné</div>
+			</div>
+		</div>
+		
+		<!-- 2. ALGORITHME - Sélection du pattern (priorité haute) -->
+		<div class="control-item">
+			<label for="patternSelect">Pattern</label>
+			<select id="patternSelect" class="pattern-select">
+				<option value="dots">Dots (Points circulaires)</option>
+				<option value="lines">Lines (Lignes parallèles)</option>
+				<option value="crosshatch">Crosshatch (Croisillons)</option>
+				<option value="diamond">Diamond (Losanges)</option>
+				<option value="square">Square (Carrés)</option>
+				<option value="hexagon">Hexagon (Hexagones)</option>
+			</select>
+		</div>
+		
+		<!-- 3. PARAMÈTRES PRINCIPAUX - Contrôles visuels (ordre logique) -->
+		<div class="control-item">
+			<label for="dotSizeSlider">Taille des points</label>
+			<div class="input-group">
+				<input type="range" id="dotSizeSlider" min="2" max="20" step="1" value="8">
+				<input type="number" id="dotSizeInput" min="2" max="20" step="1" value="8" class="value-input">
+			</div>
+		</div>
+		
+		<div class="control-item">
+			<label for="densitySlider">Densité</label>
+			<div class="input-group">
+				<input type="range" id="densitySlider" min="0.1" max="2.0" step="0.1" value="1.0">
+				<input type="number" id="densityInput" min="0.1" max="2.0" step="0.1" value="1.0" class="value-input">
+			</div>
+		</div>
+		
+		<!-- 4. AJUSTEMENTS COLORIMÉTRIQUES - Regroupés logiquement -->
+		<div class="control-item">
+			<label for="contrastSlider">Contraste</label>
+			<div class="input-group">
+				<input type="range" id="contrastSlider" min="-100" max="100" step="5" value="0">
+				<input type="number" id="contrastInput" min="-100" max="100" step="5" value="0" class="value-input">
+			</div>
+		</div>
+		
+		<div class="control-item">
+			<label for="brightnessSlider">Luminosité</label>
+			<div class="input-group">
+				<input type="range" id="brightnessSlider" min="-100" max="100" step="5" value="0">
+				<input type="number" id="brightnessInput" min="-100" max="100" step="5" value="0" class="value-input">
+			</div>
+		</div>
+		
+		<!-- 5. OPTIONS AVANCÉES - Regroupées en fin -->
+		<div class="control-item checkbox-item">
+			<input type="checkbox" id="colorMode" class="checkbox-input">
+			<label for="colorMode" class="checkbox-label">Mode couleur</label>
+		</div>
+		
+		<div class="control-item checkbox-item">
+			<input type="checkbox" id="invertMode" class="checkbox-input">
+			<label for="invertMode" class="checkbox-label">Inverser les couleurs</label>
+		</div>
+		
+		<!-- 6. ACTIONS - Bouton de téléchargement en fin -->
+		<button id="downloadBtn" class="download-btn">Télécharger l'image</button>
+		
+		<!-- 7. FEEDBACK - Indicateur de progression (position optimale) -->
+		<div id="processingIndicator" class="processing-indicator" style="display: none;">
+			<div class="progress-bar">
+				<div class="progress-fill"></div>
+			</div>
+			<p>Génération du halftone...</p>
+		</div>
+	</div>
+	
+	<!-- ===== ZONE DE RENDU PRINCIPAL ===== -->
+	<main id="sketch-container">
+		<!-- Le canvas p5.js sera inséré automatiquement ici -->
+	</main>
+</body>
+</html>
