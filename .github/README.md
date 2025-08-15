@@ -8,7 +8,7 @@
 
 > **Professional multi-algorithm dithering tool** with modern interface and advanced controls for artistic and creative image processing.
 
-![Dithering Tool Demo](https://via.placeholder.com/800x400/1a1a1a/00ff88?text=Dithering+Tool+Pro+Demo)
+![Dithering Tool Demo]()
 
 ## 🌟 Overview
 
