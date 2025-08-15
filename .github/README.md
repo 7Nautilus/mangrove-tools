@@ -1,4 +1,4 @@
-# 🎨 Mangrove Dithering
+# 🎨 Mangrove Tools
 
 ![Version](https://img.shields.io/badge/version-2.1.0-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
